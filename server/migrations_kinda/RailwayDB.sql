@@ -1,0 +1,26 @@
+-- USERS
+CREATE TABLE IF NOT EXISTS users (
+  id SERIAL PRIMARY KEY,
+  email TEXT UNIQUE NOT NULL,
+  password_hash TEXT NOT NULL,
+  created_at TIMESTAMP DEFAULT NOW()
+);
+
+-- PLAYLISTS
+CREATE TABLE IF NOT EXISTS playlists (
+  id SERIAL PRIMARY KEY,
+  user_id INT NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+  title TEXT NOT NULL,
+  description TEXT
+);
+
+-- SONGS
+CREATE TABLE IF NOT EXISTS songs (
+  id SERIAL PRIMARY KEY,
+  playlist_id INT NOT NULL REFERENCES playlists(id) ON DELETE CASCADE,
+  title TEXT NOT NULL,
+  artist TEXT NOT NULL,
+  album TEXT,
+  api_id TEXT,
+  mood TEXT
+);
