@@ -1,7 +1,7 @@
 // server/models/playlistModel.js
 const pool = require("./db");
 
-// Get all playlists
+// Get all playlists (optionally by user)
 async function getAll() {
   const result = await pool.query(
     `SELECT * FROM playlists ORDER BY id DESC`
@@ -9,7 +9,18 @@ async function getAll() {
   return result.rows;
 }
 
-// Get a single playlist
+// Get all playlists for a specific user
+async function getAllByUser(userId) {
+  const result = await pool.query(
+    `SELECT * FROM playlists
+     WHERE user_id = $1
+     ORDER BY id DESC`,
+    [userId]
+  );
+  return result.rows;
+}
+
+// Get one playlist by id
 async function getById(id) {
   const result = await pool.query(
     `SELECT * FROM playlists WHERE id = $1`,
@@ -29,7 +40,7 @@ async function create({ user_id, title, description }) {
   return result.rows[0];
 }
 
-// Update a playlist
+// Update playlist title/description
 async function update(id, { title, description }) {
   const result = await pool.query(
     `UPDATE playlists
@@ -42,7 +53,7 @@ async function update(id, { title, description }) {
   return result.rows[0];
 }
 
-// Delete a playlist
+// Delete playlist
 async function remove(id) {
   const result = await pool.query(
     `DELETE FROM playlists WHERE id = $1`,
@@ -50,11 +61,35 @@ async function remove(id) {
   );
   return result.rowCount > 0;
 }
+async function getSongs(playlistId, userId) {
+  const res = await pool.query(
+    `
+    SELECT
+      s.id,
+      s.title,
+      s.artist,
+      s.album,
+      s.api_id,
+      s.mood
+    FROM songs s
+    JOIN playlists p ON p.id = s.playlist_id
+    WHERE s.playlist_id = $1
+      AND p.user_id = $2
+    ORDER BY s.id ASC
+    `,
+    [playlistId, userId]
+  );
+
+  return res.rows;
+}
+
 
 module.exports = {
   getAll,
+  getAllByUser,
   getById,
   create,
   update,
-  remove
+  remove,
+  getSongs,
 };
