@@ -53,9 +53,15 @@ A main flaw is my DB schema I have no relational tables I store the relation in 
 ---
 
 ##  Challenges
-1. Early on, Tailwind4 gave me issues I was unable to creare the config files using the tailwind cmd for it. I manually created the files and checked my package and node modules to confirm it was installed, but it never applied my styles. The solution ultimately was to use tailwind3 and it worked.
+1. Early on, Tailwind4 gave me issues, as I was unable to create the config files using the tailwind cmd for it. I manually created the files and checked my package and node modules to confirm it was installed, but it never applied my styles. The solution ultimately was to use tailwind3 and it worked.
 
 2. The spotify api is tricky to use, especially with audio playback. I also had small issues with authentication. I was able to receive and see the response in the chrome network tab from logging in through spotify. The issue was the redirect URI was to 127..... and my application was hosted on local host. The quick fix was to host it off of 127...+ the port I used.
+
+---
+
+##  Learning Outcome
+I think the main learning outcome I got from this project is the usefulness of the division of work. Thats not to say solo projects like this arent useful, they absolutely are to get the big picture on how things work together. In my capstone project, we created a full stack web and mobile app, but we each were in charge of our own separate features, which means over time, we're able to focus on the functionality and optimizations of what we were creating. The final result was a much more complete project (to be expected). I can absolutely create a project solo comparable to the capstone, it would just take more time and a methodical approach. I always like working from the ground up creating a solid DB schema first, then backend, and finally frontend. I find that approaching it that way reduces the number of times I have to adjust the DB and backend, which can cause a lot of headaches.
+
 
 ---
 
