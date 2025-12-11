@@ -38,7 +38,7 @@ A full-stack music exploration and playlist-building application that integrates
 ### **1. Clone the Repository**
 ### **2. Install dependencies in client and server: npm install**
 ### **3. Create your own spotify app and update .env **
-### **4. Create your own PG DB using the sql dump in the root of the server dir. Update url in .env ( you may need to change model db.js i used render so it looks different than does who used neon)**
+### **4. Create your own PG DB using the sql dump in the root of the server dir. Update url in .env ( you may need to change model db.js i used render so it looks different than those who used neon)**
 ### **5. Start front and backend and enjoy**
 
 ---
